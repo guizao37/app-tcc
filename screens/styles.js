@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
       fontSize: 15
     },
     buttonContainer: {
-      width: '60%',
+      width: '80%',
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 40,

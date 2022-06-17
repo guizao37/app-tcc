@@ -2,10 +2,15 @@ import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { auth, FirebaseAuthTypes } from '../firebase'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Dashboard from '../screens/Dashboard'
+import Finances from '../screens/Finances'
+import Planning from '../screens/Planning'
+import Settings from '../screens/Settings'
 
 const HomeScreen = () => {
 
-
+  const Tab = createBottomTabNavigator();
   const navigation = useNavigation()
 
   const handleSignOut = () => {
@@ -18,15 +23,21 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Olá, {auth.currentUser?.email}</Text>
-      <TouchableOpacity
-        onPress={handleSignOut}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Sign out</Text>
-      </TouchableOpacity>
-    </View>
+    <Tab.Navigator
+    initialRouteName="Dashboard">
+        <Tab.Screen
+        name='Dashboard'
+        component={Dashboard}/>
+        <Tab.Screen
+        name='Finances'
+        component={Finances}/>
+        <Tab.Screen
+        name='Planning'
+        component={Planning}/>
+        <Tab.Screen
+        name='Settings'
+        component={Settings}/>
+    </Tab.Navigator>
   )
 }
 
