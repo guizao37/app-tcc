@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import { auth, FirebaseAuthTypes } from '../firebase'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Dashboard from '../screens/Dashboard'
@@ -24,42 +24,54 @@ const HomeScreen = () => {
 
   return (
     <Tab.Navigator
-    initialRouteName="Dashboard">
+    initialRouteName="Dashboard"
+    screenOptions={{
+      tabBarStyle: {
+        position: 'absolute',
+        bottom: 25,
+        right: 20,
+        left: 20,
+        borderRadius: 15,
+        height: 50,
+        paddingTop: 30,
+      }
+    }}>
+
         <Tab.Screen
         name='Dashboard'
-        component={Dashboard}/>
+        component={Dashboard}
+        options={{
+          tabBarIcon: () => (<Image source={require("../assets/dashboard.png")} style={{width: 35, height: 35}} />),
+        }}
+        />
+
         <Tab.Screen
         name='Finances'
-        component={Finances}/>
+        component={Finances}
+        options={{
+          tabBarIcon: () => (<Image source={require("../assets/finances.png")} style={{width: 35, height: 35}} />)
+        }}
+        />
+
+
         <Tab.Screen
         name='Planning'
-        component={Planning}/>
+        component={Planning}
+        options={{
+          tabBarIcon: () => (<Image source={require("../assets/planning.png")} style={{width: 35, height: 35}} />)
+        }}
+        />
+
         <Tab.Screen
         name='Settings'
-        component={Settings}/>
+        component={Settings}
+        options={{
+          tabBarIcon: () => (<Image source={require("../assets/setting.png")} style={{width: 35, height: 35}}  />)
+      }}
+      />
+
     </Tab.Navigator>
   )
 }
 
 export default HomeScreen
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-   button: {
-    backgroundColor: '#0782F9',
-    width: '60%',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: '700',
-    fontSize: 16,
-  },
-})

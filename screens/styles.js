@@ -54,6 +54,10 @@ const styles = StyleSheet.create({
     textResetPassword: {
       fontWeight: 'bold',
       color: 'black',
+    },
+    listContainer: {
+      height: 200,
+      width: '100%',
     }
   })
 
